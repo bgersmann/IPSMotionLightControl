@@ -1,0 +1,114 @@
+{
+    "elements": [
+        {
+            "type": "Label",
+            "caption": "Steuerung wird über die Statusvariable 'Aktiv' im Instanzformular ein- und ausgeschaltet."
+        },
+        {
+            "name": "OffDelaySeconds",
+            "type": "NumberSpinner",
+            "caption": "Ausschalt-Timer (Sekunden)",
+            "minimum": 1
+        },
+        {
+            "name": "DayDimValue",
+            "type": "NumberSpinner",
+            "caption": "Dimmwert Tag (0-100)",
+            "minimum": 0,
+            "maximum": 100
+        },
+        {
+            "name": "NightDimValue",
+            "type": "NumberSpinner",
+            "caption": "Dimmwert Nacht (0-100)",
+            "minimum": 0,
+            "maximum": 100
+        },
+        {
+            "name": "NightVariableID",
+            "type": "SelectVariable",
+            "caption": "Nacht-Variable (optional, Bool)"
+        },
+        {
+            "name": "NightVariableInvert",
+            "type": "CheckBox",
+            "caption": "Nacht-Variable invertieren"
+        },
+        {
+            "name": "Sensors",
+            "type": "List",
+            "caption": "Bewegungsmelder",
+            "rowCount": 5,
+            "add": true,
+            "delete": true,
+            "sort": {
+                "column": "VariableID",
+                "direction": "ascending"
+            },
+            "columns": [
+                {
+                    "name": "Name",
+                    "caption": "Name",
+                    "width": "250px",
+                    "add": "Bewegungsmelder",
+                    "edit": {
+                        "type": "ValidationTextBox"
+                    }
+                },
+                {
+                    "name": "VariableID",
+                    "caption": "Bool Variable",
+                    "width": "300px",
+                    "edit": {
+                        "type": "SelectVariable"
+                    },
+                    "add": 0
+                }
+            ]
+        },
+        {
+            "name": "Lights",
+            "type": "List",
+            "caption": "Leuchten",
+            "rowCount": 5,
+            "add": true,
+            "delete": true,
+            "sort": {
+                "column": "SwitchVariableID",
+                "direction": "ascending"
+            },
+            "columns": [
+                {
+                    "name": "Name",
+                    "caption": "Name",
+                    "width": "180px",
+                    "add": "Leuchte"
+                },
+                {
+                    "name": "SwitchVariableID",
+                    "caption": "Schalt-Variable (Bool)",
+                    "width": "230px",
+                    "edit": {
+                        "type": "SelectVariable"
+                    },
+                    "add": 0
+                },
+                {
+                    "name": "DimVariableID",
+                    "caption": "Dimm-Variable (Integer)",
+                    "width": "230px",
+                    "edit": {
+                        "type": "SelectVariable"
+                    },
+                    "add": 0
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "type": "Label",
+            "caption": "Die Instanz reagiert auf Bewegungsmelder-Änderungen automatisch."
+        }
+    ]
+}

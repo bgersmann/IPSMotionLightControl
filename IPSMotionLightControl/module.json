@@ -1,0 +1,14 @@
+{
+    "id": "{C3F10AC5-9BB4-9A9B-0A3E-3C7BE6154E82}",
+    "name": "IPSMotionLightControl",
+    "type": 3,
+    "vendor": "Custom",
+    "aliases": [
+        "Bewegungsmelder Lichtsteuerung"
+    ],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "BLS",
+    "url": "https://www.symcon.de"
+}

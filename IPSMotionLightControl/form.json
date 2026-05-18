@@ -82,7 +82,10 @@
                     "name": "Name",
                     "caption": "Name",
                     "width": "180px",
-                    "add": "Leuchte"
+                    "add": "Leuchte",
+                    "edit": {
+                        "type": "ValidationTextBox"
+                    }
                 },
                 {
                     "name": "SwitchVariableID",

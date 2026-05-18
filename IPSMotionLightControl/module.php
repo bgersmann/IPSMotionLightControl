@@ -152,13 +152,13 @@ class IPSMotionLightControl extends IPSModule
             $switchVariableID = $light['SwitchVariableID'];
             $dimVariableID = $light['DimVariableID'];
 
-            if ($switchVariableID > 0 && $this->IsValidBoolVariable($switchVariableID)) {
-                RequestAction($switchVariableID, $turnOn);
-            }
-
             // Dimmer nur beim Einschalten setzen
             if ($turnOn && $dimVariableID > 0 && $this->IsValidIntegerVariable($dimVariableID)) {
                 RequestAction($dimVariableID, $dimValue);
+            }
+
+            if ($switchVariableID > 0 && $this->IsValidBoolVariable($switchVariableID)) {
+                RequestAction($switchVariableID, $turnOn);
             }
         }
     }

@@ -1,0 +1,12 @@
+{
+    "id": "{405DE3DE-63F4-E2C2-2B72-752A7A58CA1F}",
+    "author": "Custom",
+    "name": "IPSMotionLightControl",
+    "url": "https://www.symcon.de",
+    "compatibility": {
+        "version": "6.0"
+    },
+    "version": "1.0",
+    "build": 1,
+    "date": 20260517
+}

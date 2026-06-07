@@ -17,6 +17,7 @@ class IPSMotionLightControl extends IPSModule
         $this->RegisterPropertyBoolean('NightVariableInvert', false);
 
         $this->RegisterAttributeString('RegisteredSensorIDs', '[]');
+        $this->RegisterAttributeBoolean('LightsOn', false);
 
         $this->RegisterVariableBoolean('Active', 'Aktiv', '~Switch', 1);
         $this->EnableAction('Active');
@@ -80,7 +81,7 @@ class IPSMotionLightControl extends IPSModule
                     $this->EvaluateState();
                 } else {
                     $this->SetTimerInterval('SwitchOffTimer', 0);
-                    $this->SwitchLights(false);
+                    $this->SwitchLights(false, true);
                 }
                 break;
 
@@ -114,7 +115,7 @@ class IPSMotionLightControl extends IPSModule
             return;
         }
 
-        $this->SwitchLights(false);
+        $this->SwitchLights(false, true);
     }
 
     private function EvaluateState(): void
@@ -144,8 +145,19 @@ class IPSMotionLightControl extends IPSModule
         return false;
     }
 
-    private function SwitchLights(bool $turnOn): void
+    private function SwitchLights(bool $turnOn, bool $force = false): void
     {
+        // Befehle nur senden, wenn sich der Soll-Zustand tatsächlich ändert.
+        // Bewegungsmelder senden bei anhaltender Bewegung sehr häufig erneut "true";
+        // ohne diese Sperre würde bei jedem Update erneut RequestAction auf alle
+        // Leuchten abgefeuert und das Funk-Gateway geflutet (Modul "hängt").
+        if (!$force && $this->ReadAttributeBoolean('LightsOn') === $turnOn) {
+            return;
+        }
+
+        $this->WriteAttributeBoolean('LightsOn', $turnOn);
+        $this->SendDebug('SwitchLights', ($turnOn ? 'EIN' : 'AUS') . ($force ? ' (force)' : ''), 0);
+
         $dimValue = $this->GetCurrentDimValue();
 
         foreach ($this->GetLights() as $light) {
